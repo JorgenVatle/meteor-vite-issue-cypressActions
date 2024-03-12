@@ -87,7 +87,7 @@ jobs:
         with:
           record: true
           start: meteor npm start
-          wait-on: 'http://127.0.0.1:5173/@vite/client'
+          wait-on: 'http://localhost:5173/@vite/client'
           wait-on-timeout: 120
           command: meteor npm test
       #    build: npx cypress info
