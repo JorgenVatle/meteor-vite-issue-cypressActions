@@ -38,7 +38,9 @@ jobs:
           path: ~/.meteor
           key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ env.METEOR_RELEASE }}
           restore-keys: |
-            ${{ runner.os }}-test-${{ env.cache-name }}-${{ env.METEOR_RELEASE }}
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
 
       - name: Install Meteor ${{ env.METEOR_RELEASE }} ☄️
         if: steps.cache-meteor-tool.outputs.cache-hit != 'true'
@@ -52,9 +54,11 @@ jobs:
           cache-name: cache-meteor
         with:
           path: .meteor
-          key: ${{ runner.os }}-test-${{ hashFiles('versions') }}
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ hashFiles('**/versions') }}
           restore-keys: |
-            ${{ runner.os }}-test-${{ hashFiles('versions') }}
+            ${{ runner.os }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-test-
+            ${{ runner.os }}-
 
       - name: Cache ~/.npm 📀
         uses: actions/cache@v4.0.0
