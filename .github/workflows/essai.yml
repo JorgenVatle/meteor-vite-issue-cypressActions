@@ -99,7 +99,7 @@ jobs:
           start: meteor npm start
           wait-on: 'http://localhost:3000, http://localhost:5173/imports/ui/main.js'
           wait-on-timeout: 120
-          command: meteor npm test
+          command: meteor npm test -- --record
       #    build: npx cypress info
         env:
           # pass the Cypress Cloud record key as an environment variable
